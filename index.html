@@ -11,12 +11,16 @@
 
 <body>
 
-    <simple-chat>
+    <main>
         <header>
-            <h1>Chat Application </h1>
-            <p>MVC Architecture with CRUD Operations </p>
+            <section id="leftSide">
+                <h1>Chat Application </h1>
+                <p>MVC Architecture with CRUD Operations </p>
+            </section>
 
-            <span id="msgCount" class="badge">0 messages</span>
+            <section id="rightSide">
+                <span id="msgCount" class="badge">0 messages</span>
+            </section>
         </header>
 
         <section class="toolbar">
@@ -26,12 +30,13 @@
 
         </section>
 
+        <section class="messages"></section>
 
         <form class="input-area">
             <input type="text" placeholder="Type a message...">
             <button type="submit">Send</button>
         </form>
-    </simple-chat>
+    </main>
 
 
 
