@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Chat application (MVC + CRUD)</title>
+    <link rel="stylesheet" href="styles.css" />
+</head>
+
+<body>
+
+    <simple-chat>
+        <header>
+            <h1>Chat Application </h1>
+            <p>MVC Architecture with CRUD Operations </p>
+
+            <span id="msgCount" class="badge">0 messages</span>
+        </header>
+
+        <section class="toolbar">
+            <button id="exportButton" class="btn">📤 Export Chat</button>
+            <button id="importButton" class="btn"> 📥 Import Chat</button>
+            <button id="clearButton" class="btn">🗑️ Clear All</button>
+
+        </section>
+
+
+        <form class="input-area">
+            <input type="text" placeholder="Type a message...">
+            <button type="submit">Send</button>
+        </form>
+    </simple-chat>
+
+
+
+
+</body>
+
+</html>
