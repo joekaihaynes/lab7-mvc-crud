@@ -45,7 +45,7 @@ export function Model() {
     function updateText(id, newText) {
         let msg = messages.find(m => m.id === id);
         if (!msg) return false;
-        msg.text = String(newText || ""); e
+        msg.text = String(newText || "");
         msg.edited = true;
         save();
         return true;
