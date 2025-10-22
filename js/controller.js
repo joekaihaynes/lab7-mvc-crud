@@ -1,8 +1,8 @@
-import { getBotResponse } from "./eliza";
+import { getBotResponse } from "./eliza.js";
 
 export function Controller (model, view) {
 
-    model.setOnchange(function(state) {
+    model.setOnChange(function(state) {
         view.render(state);
     });
 
