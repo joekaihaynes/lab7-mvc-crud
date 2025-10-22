@@ -12,6 +12,8 @@ export function View(doc){
     let onImport = null;
     let onExport = null;
     let onClear = null;
+    let onEdit = null;
+    let onDelete = null;
 
     function render(state){
         let items = (state && state.messages) ? state.messages : [];
@@ -25,11 +27,34 @@ export function View(doc){
         }else{
             for (let i = 0; i < items.length; i++) {
                 let m = items[i];
+
+                let optionsRow = d.createElement("message-row");
+                optionsRow.dataset.id = m.id;
+
                 let p = d.createElement("p");
                 p.className = (m.role === "user") ? "user" : "bot";
                 p.textContent = m.text || "";
-                list.appendChild(p);
+                optionsRow.appendChild(p);
 
+                if(m.role === "user"){
+                    let action = d.createElement("option-row");
+
+                    let delButton = d.createElement("button");
+                    delButton.type = "button";
+                    delButton.textContent = "Delete";
+                    delButton.dataset.action = "delete";
+
+                    let editButton = d.createElement("button");
+                    editButton.type = "button";
+                    editButton.textContent = "Edit";
+                    editButton.dataset.action = "edit";
+
+                    action.appendChild(delButton);
+                    action.appendChild(editButton);
+                    optionsRow.appendChild(action);
+
+                }
+                list.appendChild(optionsRow);
 
             }
 
@@ -55,6 +80,8 @@ export function View(doc){
 
 
     }
+
+
 
     if (exptButton){
         exptButton.addEventListener("click", function () {
@@ -90,12 +117,32 @@ export function View(doc){
         });
     }
 
+    if (list) {
+        list.addEventListener("click", function (e) {
+            const btn = e.target.closest("button");
+            if (!btn) return;
+
+            const action = btn.dataset.action;
+            if (!action) return;
+
+            const row = btn.closest("message-row");
+
+            if (!row || !row.dataset.id) return;
+            const id = row.dataset.id;
+
+            if (action === "edit" && typeof onEdit === "function")  onEdit(id);
+            if (action === "delete" && typeof onDelete === "function") onDelete(id);
+        });
+    }
+
     return{
         render: render,
         set onSend(fn)   { onSend = fn;   },
         set onExport(fn) { onExport = fn; },
         set onImport(fn) { onImport = fn; },
-        set onClear(fn)  { onClear = fn;  }
+        set onClear(fn)  { onClear = fn;  },
+        set onEdit(fn)   { onEdit = fn;   },
+        set onDelete(fn) { onDelete = fn; }
     };
 
 }
