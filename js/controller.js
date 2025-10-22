@@ -2,9 +2,9 @@ import { getBotResponse } from "./eliza";
 
 export function Controller (model, view) {
 
-    model.setOnchange(function(state)){
+    model.setOnchange(function(state) {
         view.render(state);
-    }
+    });
 
     view.onSend = function(text){
         model.add(text, "user");
