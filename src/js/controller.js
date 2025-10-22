@@ -32,6 +32,13 @@ export function Controller (model, view) {
     }
 
     view.onEdit = function(id){
+        let newText = prompt("Edit your message: ");
+        if(!newText) return;
+        model.update(id, newText);
+    }
+
+    view.onDelete = function(id){
+        if(!confirm("Are you sure you want to delete?")) return;
         model.remove(id);
     }
 
