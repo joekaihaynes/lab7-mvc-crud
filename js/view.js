@@ -1,3 +1,9 @@
+/**
+ * Creates a View instance for rendering the chat interface and handling user interactions.
+ * @param {Document} doc - The document object (defaults to global document).
+ * @returns {Object} View API with render method and setter properties for event handlers.
+ */
+
 export function View(doc){
     let d = document;
     let list = d.querySelector(".messages")
@@ -15,6 +21,11 @@ export function View(doc){
     let onEdit = null;
     let onDelete = null;
 
+    /**
+     * Renders the chat messages list from state.
+     * Shows empty state message when no messages exist.
+     * @param {Object} state - Application state containing messages array.
+     */
     function render(state){
         let items = (state && state.messages) ? state.messages : [];
         list.innerHTML = "";
@@ -92,6 +103,10 @@ export function View(doc){
         });
     }
 
+    /**
+     * Event handler for import button click.
+     * Opens file picker and reads JSON file contents.
+     */
     if (impButton){
         impButton.addEventListener("click", function () {
             let picker = d.createElement("input");
@@ -112,6 +127,10 @@ export function View(doc){
         });
     }
 
+    /**
+     * Event handler for clear button click.
+     * Confirms before triggering onClear callback.
+     */
     if (clrButton){
         clrButton.addEventListener("click", function () {
             if (confirm("Clear all messages?")) {
@@ -120,6 +139,10 @@ export function View(doc){
         });
     }
 
+    /**
+     * Event handler for message list clicks.
+     * Handles edit/delete button clicks on user messages.
+     */
     if (list) {
         list.addEventListener("click", function (e) {
             const btn = e.target.closest("button");
