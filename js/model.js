@@ -74,7 +74,11 @@ export function Model() {
             if (!Array.isArray(textChain)) {
                 return false;
             }
-            messages = textChain;
+            messages = textChain.filter(function(m){
+                return m && typeof m.text === "string" &&
+                    (m.role === "user" || m.role === "bot");
+            });
+            save();
             return true;
         }catch(e){
             return false;
