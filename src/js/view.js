@@ -29,29 +29,32 @@ export function View(doc){
                 let m = items[i];
 
                 let optionsRow = d.createElement("message-row");
+                optionsRow.className = "msg-row " + (m.role);
                 optionsRow.dataset.id = m.id;
 
-                let p = d.createElement("p");
-                p.className = (m.role === "user") ? "user" : "bot";
-                p.textContent = m.text || "";
-                optionsRow.appendChild(p);
+                let tBubble = d.createElement("text-bubble");
+                tBubble.className = (m.role === "user") ? "user" : "bot";
+                tBubble.textContent = m.text || "";
+                optionsRow.appendChild(tBubble);
 
                 if(m.role === "user"){
                     let action = d.createElement("option-row");
 
                     let delButton = d.createElement("button");
+                    delButton.className = "deleteButton";
                     delButton.type = "button";
                     delButton.textContent = "Delete";
                     delButton.dataset.action = "delete";
 
                     let editButton = d.createElement("button");
+                    editButton.className = "editButton";
                     editButton.type = "button";
                     editButton.textContent = "Edit";
                     editButton.dataset.action = "edit";
 
-                    action.appendChild(delButton);
                     action.appendChild(editButton);
-                    optionsRow.appendChild(action);
+                    action.appendChild(delButton);
+                    tBubble.appendChild(action);
 
                 }
                 list.appendChild(optionsRow);
