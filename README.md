@@ -77,6 +77,6 @@ lab7-mvc-crud/
 - Combining classes: At one point I concatenated class names without a space ('message'+role) which broke styling; should be 'message ' + role.
 
 ## Live Demo Link 
-
+https://joekaihaynes.github.io/lab7-mvc-crud/
 ## Author 
 Joe Haynes 
